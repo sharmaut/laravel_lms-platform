@@ -1,0 +1,11 @@
+# For the Laravel Backend
+/backend/vendor/
+/backend/node_modules/
+/backend/public/build/
+/backend/.env
+/backend/storage/*.key
+
+# For the React Frontend
+/frontend/node_modules/
+/frontend/build/
+/frontend/.env

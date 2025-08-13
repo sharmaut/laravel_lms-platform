@@ -1,3 +1,4 @@
+.DS_Store
 # For the Laravel Backend
 /backend/vendor/
 /backend/node_modules/

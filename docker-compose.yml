@@ -1,0 +1,42 @@
+version: '3.8'
+
+services:
+  # The Laravel Backend Service
+  backend:
+    build: ./backend
+    container_name: lms_backend
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./backend:/var/www/html
+    environment:
+      - DB_HOST=db
+      - DB_DATABASE=laravel_lms
+      - DB_USERNAME=lms_user
+      - DB_PASSWORD=password
+    depends_on:
+      - db
+
+  # The React Frontend Service
+  frontend:
+    build: ./frontend
+    container_name: lms_frontend
+    ports:
+      - "3000:80"
+    depends_on:
+      - backend
+
+  # The MySQL Database Service
+  db:
+    image: mysql:8.0
+    container_name: lms_db
+    environment:
+      MYSQL_DATABASE: laravel_lms
+      MYSQL_USER: lms_user
+      MYSQL_PASSWORD: password
+      MYSQL_ROOT_PASSWORD: rootpassword
+    volumes:
+      - db-data:/var/lib/mysql
+
+volumes:
+  db-data:
